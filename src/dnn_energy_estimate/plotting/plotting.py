@@ -292,13 +292,13 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
     
         fig.suptitle("Normal plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/normal_2d_wGNN_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/normal_2d_wGNN_"+name_suffix+"_f"+n_features+".png")
     else:
         fig.suptitle("Normal plots for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/normal_2d_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/normal_2d_"+name_suffix+"_f"+n_features+".png")
     plt.clf()
@@ -523,13 +523,13 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     
         fig.suptitle("Inverted plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/inv_2d_wGNN_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/inv_2d_wGNN_"+name_suffix+"_f"+n_features+".png")
     else: 
         fig.suptitle("Inverted plots for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/inv_2d_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/inv_2d_"+name_suffix+"_f"+n_features+".png")
     plt.clf()
@@ -876,13 +876,13 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     
         fig.suptitle("Error plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/error_plots_wGNN_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/error_plots_wGNN_"+name_suffix+"_f"+n_features+".png")
     else:
         fig.suptitle("Error plots for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
-        if (save == True):
+        if (save is True):
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/error_plots_"+name_suffix+"_f"+n_features+".pdf")
             fig.savefig("plots/"+name_suffix+"/"+wstr+"/"+str(LR)+"/error_plots_"+name_suffix+"_f"+n_features+".png")
     plt.clf()
