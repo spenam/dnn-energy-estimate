@@ -97,8 +97,8 @@ for i in [lkl]:
     dropout_str = ""
     model.add(layers.BatchNormalization())
 
-    for j in range(len(arch)):
-        model.add(layers.Dense(arch[j]))
+    for j, item in enumerate(arch):
+        model.add(layers.Dense(item))
         if batchnorm == True:
             batchnorm_str = "_bn_"
             model.add(layers.BatchNormalization())
