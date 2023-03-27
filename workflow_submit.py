@@ -1,4 +1,4 @@
-import os, sys
+import os
 import subprocess
 
 # No likelihood for now

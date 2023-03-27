@@ -2,9 +2,7 @@
 
 import km3pipe as kp
 import numpy as np
-import pickle
 import pandas as pd
-import ROOT
 
 
 class Add_SWIMinfo_neutrino(kp.Module):

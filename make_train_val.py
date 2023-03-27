@@ -1,14 +1,9 @@
 import pandas as pd # data analysis package
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-import argparse
-import pickle
 from functions import *
 from plotting import *
-from time import time
 import matplotlib
-import matplotlib as mpl
 import h5py
 
 def df_to_sarray(df):

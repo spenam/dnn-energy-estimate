@@ -4,10 +4,8 @@ import sys
 #import boost_histogram as bh
 import h5py
 import matplotlib.pyplot as plt
-import sys
 
 from plotter import *
-from scipy.interpolate import make_interp_spline
 import argparse
 
 parser = argparse.ArgumentParser(description="File name")
