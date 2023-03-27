@@ -80,8 +80,8 @@ def get_percentiles(x_array, y_array, histweights):
         quant_15_histo = 0
         quant_85_histo = 0
 
-        for jj in range(len(histo)):
-            total += histo[jj]
+        for jj, item in enumerate(histo):
+            total += item
             # print(total, median_index)
             if (total > quant_15) & (quant_15_histo == 0):
                 quant_15_histo = mids_bins[jj]

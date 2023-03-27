@@ -47,11 +47,11 @@ def do_training(online = 1):
     time = "12:00:00"
     time = "3:00:00"
     memory = "8GB"
-    for ll in range(len(lkl)):
-        for l in range(len(loss)):
-            for k in range(len(architecture_layers)):
-                for i in range(len(architecture_size)):
-                    for j in range(len(lr)):
+    for ll, _ in enumerate(lkl):
+        for l, _ in enumerate(loss):
+            for k, _ in enumerate(architecture_layers):
+                for i, _ in enumerate(architecture_size):
+                    for j, item in enumerate(lr):
                         if lkl[ll]=="5":
                             trainingfeatures = JGandalfcols + JShowerfitcols + Triggercols +  GNNcols + likelihoods
                         else:
@@ -60,7 +60,7 @@ def do_training(online = 1):
                         n_features = len(trainingfeatures)
 
 
-                        script_options = architecture_layers[k] + " " +architecture_size[i] + " " + lr[j] + " " +str(n_features)+ " " + loss[l] + " " + lkl[ll]
+                        script_options = architecture_layers[k] + " " +architecture_size[i] + " " + item + " " +str(n_features)+ " " + loss[l] + " " + lkl[ll]
                         if online==1:
                             print('Submitting : sbatch --partition htc --nodes 1 --job-name DNN_training --ntasks 1 --mem-per-cpu ' + memory + ' --time '+time+ ' ' + batch_job_script + ' ' + script_options)
                             subprocess.run(['sbatch --partition htc --nodes 1 --job-name DNN_training --ntasks 1 --mem-per-cpu ' + memory + ' --time '+time+ ' ' + batch_job_script + ' ' + script_options],shell=True)

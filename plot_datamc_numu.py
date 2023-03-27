@@ -271,15 +271,15 @@ scale=1.5
 nams = ["JG_E_vs_trueEnergy_simple", "JG_Len_vs_trueEnergy_simple", "JS_E_vs_trueEnergy_simple", "DNN_Eest_vs_trueEnergy_simple"]
 colors = ['C0', 'C1', 'C2', 'C3']
 fig, axe = plt.subplots(figsize=[4*scale,3*scale])
-for i in range(len(nams)):
+for i, item in enumerate(nams):
     figt, axet = plt.subplots()
     axet.set_xscale('log')
-    h2 = datasets[nams[i]]['h']
+    h2 = datasets[item]['h']
     x = (h2[1][1:] + h2[1][:-1])/2.
     median, err = plotResolution(h2, axet)
     plt.close(figt)
 
-    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[nams[i]]["label"])
+    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[item]["label"])
     axe.fill_between(x, median-err[0], median+err[1], color=clrs_4[i])
 
 axe.set_xscale('log')
@@ -303,15 +303,15 @@ nams = ["JG_E_vs_trueEnergy_pure_track", "JG_Len_vs_trueEnergy_pure_track", "JS_
         "DNN_Eest_vs_trueEnergy_pure_track"]
 colors = ['C0', 'C1', 'C2', 'C3']
 fig, axe = plt.subplots(figsize=[4*scale,3*scale])
-for i in range(len(nams)):
+for i, item in enumerate(nams):
     figt, axet = plt.subplots()
     axet.set_xscale('log')
-    h2 = datasets[nams[i]]['h']
+    h2 = datasets[item]['h']
     x = (h2[1][1:] + h2[1][:-1])/2.
     median, err = plotResolution(h2, axet)
     plt.close(figt)
 
-    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[nams[i]]["label"])
+    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[item]["label"])
     axe.fill_between(x, median-err[0], median+err[1], color=clrs_4[i])
 
 axe.set_xscale('log')
@@ -335,15 +335,15 @@ nams = ["JG_E_vs_trueEnergy_pure_shower", "JG_Len_vs_trueEnergy_pure_shower", "J
         "DNN_Eest_vs_trueEnergy_pure_shower"]
 colors = ['C0', 'C1', 'C2', 'C3']
 fig, axe = plt.subplots(figsize=[4*scale,3*scale])
-for i in range(len(nams)):
+for i, item in enumerate(nams):
     figt, axet = plt.subplots()
     axet.set_xscale('log')
-    h2 = datasets[nams[i]]['h']
+    h2 = datasets[item]['h']
     x = (h2[1][1:] + h2[1][:-1])/2.
     median, err = plotResolution(h2, axet)
     plt.close(figt)
 
-    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[nams[i]]["label"])
+    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[item]["label"])
     axe.fill_between(x, median-err[0], median+err[1], color=clrs_4[i])
 
 axe.set_xscale('log')
@@ -368,15 +368,15 @@ nams = ["JG_E_vs_trueEnergy_contaminated_track", "JG_Len_vs_trueEnergy_contamina
         "DNN_Eest_vs_trueEnergy_contaminated_track"]
 colors = ['C0', 'C1', 'C2', 'C3']
 fig, axe = plt.subplots(figsize=[4*scale,3*scale])
-for i in range(len(nams)):
+for i, item in enumerate(nams):
     figt, axet = plt.subplots()
     axet.set_xscale('log')
-    h2 = datasets[nams[i]]['h']
+    h2 = datasets[item]['h']
     x = (h2[1][1:] + h2[1][:-1])/2.
     median, err = plotResolution(h2, axet)
     plt.close(figt)
 
-    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[nams[i]]["label"])
+    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[item]["label"])
     axe.fill_between(x, median-err[0], median+err[1], color=clrs_4[i])
 
 axe.set_xscale('log')
@@ -401,15 +401,15 @@ nams = ["JG_E_vs_trueEnergy_contaminated_shower", "JG_Len_vs_trueEnergy_contamin
         "DNN_Eest_vs_trueEnergy_contaminated_shower"]
 colors = ['C0', 'C1', 'C2', 'C3']
 fig, axe = plt.subplots(figsize=[4*scale,3*scale])
-for i in range(len(nams)):
+for i, item in enumerate(nams):
     figt, axet = plt.subplots()
     axet.set_xscale('log')
-    h2 = datasets[nams[i]]['h']
+    h2 = datasets[item]['h']
     x = (h2[1][1:] + h2[1][:-1])/2.
     median, err = plotResolution(h2, axet)
     plt.close(figt)
 
-    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[nams[i]]["label"])
+    axe.plot(x, median, zorder=10,color=colors[i], label=datasets[item]["label"])
     axe.fill_between(x, median-err[0], median+err[1], color=clrs_4[i])
 
 axe.set_xscale('log')
