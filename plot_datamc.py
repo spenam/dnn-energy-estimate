@@ -86,7 +86,7 @@ variables=[
 ]
 
 def make_datamc_hist(ax0, hists0, xlabel0, labels0, colors0):
-    
+
 
     NC0 = hists0[0]
     e0 = hists0[1]
@@ -117,7 +117,7 @@ def make_datamc_hist(ax0, hists0, xlabel0, labels0, colors0):
     #ax0.set_yscale("log")
 
 def make_datamc_hist_stacked(ax0, hists0, xlabel0, labels0, colors0):
-    
+
 
     muons0 = hists0[0]
     NC0 = hists0[1]
@@ -188,7 +188,7 @@ def defaultColorsMpl(alpha=1.):
 
 
 def niceCBTop(axe,fig,obj, loc = 'upper right'):
-    
+
     axins = inset_axes(axe,
                        width="60%",  # width = 50% of parent_bbox width
                        height="5%",  # height : 5%
@@ -206,7 +206,7 @@ def getSigmaRel(x,y,values):
     for i in range(len(sigRel)):
         mean[i] = np.sum(yC*values[i]) / np.sum(values[i])
         sigRel[i] = np.sqrt(np.sum(values[i]*(yC-mean[i])**2)/np.sum(values[i]))
-            
+
     return sigRel,mean
 
 
@@ -244,7 +244,7 @@ def plotResolution(h,axe,drawLine=True):
         axe.hist(x[:-1], bins = x, weights = sigmaBelow,**sigmaKwargs)
         axe.hist(x[:-1], bins = x, weights = sigmaAbove,linestyle=':',**sigmaKwargs)
         axe.hist(x[:-1], bins = x, weights = median,**medianKwargs)
-    
+
 
     return median, [-sigmaBelow+median,sigmaAbove-median]
 

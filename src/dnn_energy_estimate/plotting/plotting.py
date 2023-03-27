@@ -71,7 +71,7 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
             dims = [2,3]
 
     col = 0
-    
+
     xlim = [1,100]
     ylim = [1,100]
     xlim_log = np.log10(xlim)
@@ -81,7 +81,7 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
     nbines = 50
     fig.set_facecolor('white')
     #fig.tight_layout(pad =3.0)
-    
+
     ###### ENERGY ESTIMATED BY THE NN ######
 
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
@@ -121,11 +121,11 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
     #ax[1][col].set_yticks([1, 10, 100])
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
-    
+
     ###### ENERGY ESTIMATED BY JENERGY ######
-    
+
     col += 1
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d(10**y_test0,X_test0['JENERGY_ENERGY'], bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -161,12 +161,12 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
     #ax[1][1].set_ylim(1,100)
-    
-    
+
+
      ###### ENERGY ESTIMATED BY JLENGTH ######
-    
+
     col += 1
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d(10**y_test0,X_test0['JSTART_LENGTH_METRES']*0.25, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -206,10 +206,10 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
 
 
     ###### ENERGY ESTIMATED BY JSHOWERFIT ######
-    
+
     if Jshf != 0:
         col += 1
-        
+
         x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
         y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
         #im = ax[0][col].hist2d(10**y_test0,X_test0['JENERGY_ENERGY'], bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -247,9 +247,9 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
         #ax[1][1].set_ylim(1,100)
 
 
-    
+
     ###### ENERGY ESTIMATED BY GNN ######
-    
+
     if len(Gcols)>0:
         col += 1
         x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
@@ -288,7 +288,7 @@ def normal_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = 
         ax[1][col].set_xlim(xlim)
         ax[1][col].set_ylim(0,4)
         #ax[1][col].set_ylim(1,100)
-    
+
         fig.suptitle("Normal plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
         if (save is True):
@@ -315,7 +315,7 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
             dims = [2,4]
         else:
             dims = [2,3]
-    
+
     xlim = [1,100]
     ylim = [1,100]
     xlim_log = np.log10(xlim)
@@ -327,9 +327,9 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     #fig.tight_layout(pad =3.0)
 
     ###### ENERGY ESTIMATED BY the NN ######
-    
+
     col = 0
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d(10**y_pred0, 10**y_test0, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -362,12 +362,12 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     #ax[1][col].set_yticks([1, 10, 100])
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
-    
-    
+
+
     ###### ENERGY ESTIMATED BY JENERGY  ######
 
     col += 1
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d( X_test0['JENERGY_ENERGY'], 10**y_test0, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -401,12 +401,12 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
     #ax[1][col].set_ylim(1,100)
-    
-    
+
+
     ###### ENERGY ESTIMATED BY JLENGTH ######
-    
+
     col += 1
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d(X_test0['JSTART_LENGTH_METRES']*0.25, 10**y_test0, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -439,12 +439,12 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
     #ax[1][col].set_ylim(1,100)
-    
+
 
     ###### ENERGY ESTIMATED BY JSHOWERFIT  ###### 
 
     col += 1
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
     #im = ax[0][col].hist2d( X_test0['JENERGY_ENERGY'], 10**y_test0, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -478,14 +478,14 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
     ax[1][col].set_xlim(xlim)
     ax[1][col].set_ylim(0,4)
     #ax[1][col].set_ylim(1,100)
-    
-    
+
+
     ###### ENERGY ESTIMATED BY GNN  ######
-    
+
     if len(Gcols)>0:
 
         col += 1
-    
+
         x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
         y_bins = np.logspace(ylim_log[0], ylim_log[1], nbines)
         #im = ax[0][col].hist2d( X_test0['pred_energy'], 10**y_test0, bins=[x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,ylim])
@@ -519,7 +519,7 @@ def inv_2d_compare(X_test0, y_test0, y_pred0, mycmap = "BuPu", name_suffix = "dr
         ax[1][col].set_xlim(xlim)
         ax[1][col].set_ylim(0,4)
         #ax[1][col].set_ylim(1,100)
-    
+
         fig.suptitle("Inverted plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
         if (save is True):
@@ -543,7 +543,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
         dims = [4,4]
     else:
         dims = [4,3]
-    
+
     xlim = [1,100]
     ylim = [1,100]
     error_ylim = [-1.5,5]
@@ -558,7 +558,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
 
 
     ###### ENERGY ESTIMATED BY the NN ######
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(error_ylim[0], error_ylim[1], nbines)
     #im = ax[0][0].hist2d(10**y_test0,((10**y_pred0-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,error_ylim])
@@ -577,7 +577,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[0][0].set_xlim(xlim)
     ax[0][0].set_ylim(error_ylim)
     fig.colorbar(im[3], ax = ax[0][0])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(-2.5, 2.5, nbines)
     #im = ax[1][0].hist2d(10**y_test0,((y_pred0-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[-2.5,2.5]], weights = X_test0['weights'])
@@ -595,7 +595,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[1][0].set_xlim(xlim)
     ax[1][0].set_ylim(-2.5,2.5)
     fig.colorbar(im[3], ax = ax[1][0])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, error_ylim[1], nbines)
     #im = ax[2][0].hist2d(10**y_test0,np.abs((10**y_pred0-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0, error_ylim[1]]])
@@ -614,7 +614,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[2][0].set_xlim(xlim)
     ax[2][0].set_ylim(0,error_ylim[1])
     fig.colorbar(im[3], ax = ax[2][0])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, 2.5, nbines)
     #im = ax[3][0].hist2d(10**y_test0,np.abs((y_pred0-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0,2.5]])
@@ -633,10 +633,10 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[3][0].set_xlim(xlim)
     ax[3][0].set_ylim(0,2.5)
     fig.colorbar(im[3], ax = ax[3][0])
-    
-    
+
+
     ###### ENERGY ESTIMATED BY the JENERGY ######
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(error_ylim[0], error_ylim[1], nbines)
     #im = ax[0][1].hist2d(10**y_test0,((X_test0['JENERGY_ENERGY']-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,error_ylim])
@@ -655,7 +655,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[0][1].set_xlim(xlim)
     ax[0][1].set_ylim(error_ylim)
     fig.colorbar(im[3], ax = ax[0][1])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(-2.5, 2.5, nbines)
     #im = ax[1][1].hist2d(10**y_test0,((np.log10(X_test0['JENERGY_ENERGY'])-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[-2.5,2.5]])
@@ -674,7 +674,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[1][1].set_xlim(xlim)
     ax[1][1].set_ylim(-2.5,2.5)
     fig.colorbar(im[3], ax = ax[1][1])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, error_ylim[1], nbines)
     #im = ax[2][1].hist2d(10**y_test0,np.abs((X_test0['JENERGY_ENERGY']-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0,error_ylim[1]]])
@@ -694,7 +694,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[2][1].set_xlim(xlim)
     ax[2][1].set_ylim(0, error_ylim[1])
     fig.colorbar(im[3], ax = ax[2][1])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, 2.5, nbines)
     #im = ax[3][1].hist2d(10**y_test0,np.abs((np.log10(X_test0['JENERGY_ENERGY'])-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0,2.5]])
@@ -714,10 +714,10 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[3][1].set_xlim(xlim)
     ax[3][1].set_ylim(0,2.5)
     fig.colorbar(im[3], ax = ax[3][1])
-    
+
 
     ###### ENERGY ESTIMATED BY the JLENGTH ######
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(error_ylim[0], error_ylim[1], nbines)
     #im = ax[0][2].hist2d(10**y_test0,((0.25*X_test0['JSTART_LENGTH_METRES']-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,error_ylim])
@@ -737,7 +737,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[0][2].set_xlim(xlim)
     ax[0][2].set_ylim(error_ylim)
     fig.colorbar(im[3], ax = ax[0][2])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(-2.5, 2.5, nbines)
     #im = ax[1][2].hist2d(10**y_test0,((np.log10(0.25*X_test0['JSTART_LENGTH_METRES'])-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[-2.5,2.5]])
@@ -755,7 +755,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[1][2].set_xlim(xlim)
     ax[1][2].set_ylim(-2.5,2.5)
     fig.colorbar(im[3], ax = ax[1][2])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, error_ylim[1], nbines)
     #im = ax[2][2].hist2d(10**y_test0,np.abs((0.25*X_test0['JSTART_LENGTH_METRES']-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0,error_ylim[1]]])
@@ -774,7 +774,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[2][2].set_xlim(xlim)
     ax[2][2].set_ylim(0, error_ylim[1])
     fig.colorbar(im[3], ax = ax[2][2])
-    
+
     x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
     y_bins = np.linspace(0, 2.5, nbines)
     #im = ax[3][2].hist2d(10**y_test0,np.abs((0.25*np.log10(X_test0['JSTART_LENGTH_METRES'])-y_test0)/y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,[0,2.5]])
@@ -792,11 +792,11 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
     ax[3][2].set_xlim(xlim)
     ax[3][2].set_ylim(0,2.5)
     fig.colorbar(im[3], ax = ax[3][2])
-    
+
     if len(Gcols)>0:
-        
+
         ###### ENERGY ESTIMATED BY the GNN ######
-    
+
         x_bins = np.logspace(xlim_log[0], xlim_log[1], nbines)
         y_bins = np.linspace(error_ylim[0], error_ylim[1], nbines)
         #im = ax[0][3].hist2d(10**y_test0,((X_test0['pred_energy']-10**y_test0)/10**y_test0), bins = [x_bins, y_bins], norm=mpl.colors.LogNorm(), range =[xlim,error_ylim])
@@ -872,7 +872,7 @@ def error_plots(X_test0, y_test0, y_pred0, mycmap = "viridis", name_suffix = "dr
         ax[3][3].set_xlim(xlim)
         ax[3][3].set_ylim(0,2.5)
         fig.colorbar(im[3], ax = ax[3][3])
-    
+
         fig.suptitle("Error plots with GNN for NN "+name_suffix+ "\n and "+n_features+ " features with "+str(LR)+" as LR")
         #fig.tight_layout()
         if (save is True):

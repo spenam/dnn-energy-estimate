@@ -45,18 +45,18 @@ for key, items in dataSets.items():
 
 # set the weighing scheme :
 for key, value in dataSets.items():
-    
+
     #value['ext_weight'] = ''
     #value['func_weight'] = None
     #value['func_weight_nosc'] = None
     #value['func_kwargs'] = None
-    
+
     #if key.find('data') != -1 :  # Data, will use cst weight of 1
     #    pass
     #    
     #else: # Atm. muons, use pre-computed weight from DST (livetime_sim/livetime_DAQ, per run)
     #    value['ext_weight'] = 'T.sum_mc_evt.weight'
-        
+
     # Set tree output file, storing cuts results etc ...
     print(outFilePath)
     print(key.replace(' ', '-'))

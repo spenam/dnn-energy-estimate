@@ -132,7 +132,7 @@ for key, items in dataSets.items():
 
 # set the weighing scheme :
 for key, value in dataSets.items():
-    
+
     print(outFilePath)
     print(key.replace(' ', '-'))
     value['output_filename'] = '{}/SelectedEvents_{}_{}.root'.format(outFilePath,
