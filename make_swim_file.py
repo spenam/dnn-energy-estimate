@@ -1,7 +1,3 @@
-import numpy as np
-import pandas as pd
-import uproot
-import km3pipe as kp
 import km3ant as ka
 import argparse
 from swim_def import Add_SWIMinfo_neutrino, Add_SWIMinfo_muon, Add_SWIMinfo_JSHF, Add_SWIMinfo_DNN

@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import uproot
-from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib as mpl
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 

@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-from scipy.interpolate import make_interp_spline
 from scipy.interpolate import interp1d
 
 nbines = 50 + 20

@@ -1,7 +1,3 @@
-import numpy as np
-import pandas as pd
-import uproot
-import km3pipe as kp
 import km3ant as ka
 import argparse
 

@@ -1,7 +1,5 @@
 import numpy as np
-import tensorflow as tf
 from tensorflow import keras
-import pickle
 
 
 import km3pipe as kp
