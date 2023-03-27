@@ -99,11 +99,11 @@ for i in [lkl]:
 
     for j, item in enumerate(arch):
         model.add(layers.Dense(item))
-        if batchnorm == True:
+        if batchnorm is True:
             batchnorm_str = "_bn_"
             model.add(layers.BatchNormalization())
         model.add(layers.Activation("PReLU"))
-        if drop == True:
+        if drop is True:
             dropout_str = "_do_"
             model.add(layers.Dropout(drop_vals[j]))
     model.add(layers.Dense(1))
