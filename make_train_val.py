@@ -125,12 +125,12 @@ for i in [0]:
         small_dict[j] = JGANDALF[j][lik_mask].tolist()
         pred_dict[j] = PRED[j].tolist()
 #        print("Done with: " + j, file=open("outputs/"+NN_info+"/w/"+str(LR)+ "/output.txt","a"))
-        
+
     for j in Gcols:
         print(j)
         small_dict[j] = GNN[j][lik_mask].tolist()
 #        print("Done with: " + j, file=open("outputs/"+NN_info+"/w/"+str(LR)+ "/output.txt","a"))
-            
+
     support_features = ['type', 'evt_id', 'run_id', 'frame_index', 'livetime_DAQ', 'ngen']
     for fe in support_features:
         print(fe)

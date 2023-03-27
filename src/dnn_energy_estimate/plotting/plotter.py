@@ -9,9 +9,9 @@ midEbins = (Ebins[:-1] + Ebins[1:]) / 2.0
 cmin = 0.00000000001
 
 def latexify(fig_width=None, ratio = (np.sqrt(5)-1.0)/2.0 ,fig_height=None):
-    
+
     '''Make plots have latex font and size equal to text'''
-    
+
     fig_width_pt = 412.56497     # Get this from LaTeX using \the\textwidth
     inches_per_pt = 1.0/72.0#.27  # Convert pt to inch
 
@@ -47,7 +47,7 @@ def latexify(fig_width=None, ratio = (np.sqrt(5)-1.0)/2.0 ,fig_height=None):
           'font.serif': ['Computer Modern Roman'],  # blank entries should cause plots to inherit fonts from the document
           'font.sans-serif': ['Computer Modern Sans serif']
         }
-        
+
     matplotlib.rcParams.update(params)
 
 

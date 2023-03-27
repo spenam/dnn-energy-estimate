@@ -7,7 +7,7 @@ def train_regression(clf, X_train, y_train): # define the training model functio
     clf.fit(X_train, y_train)
     end = time()
     print ("training time {:4f} seconds".format(end - start))
-                    
+
 def predict_labels(clf, features, target): # define the labels function
     # Record Forecast Time
     start = time()
@@ -47,7 +47,7 @@ def hist_sampling(uplim = 60000, lowE = 0, highE = 2, nbins = 20, mcE=0):
             else:
                 joint_mask = joint_mask | mask#[mask]
             print("###### THIS IS JOINT MASK #######", "n true: ", joint_mask.sum())
-                    
+
         else:
             print(len(y_all_temp))
             mini_mask = np.random.randint(len(y_all_temp), size=uplim)

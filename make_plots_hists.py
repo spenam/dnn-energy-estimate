@@ -172,7 +172,7 @@ for key, value in dataset_data.items():
         pass
     else :    # Atm. muons, use pre-computed weight from DST (livetime_sim/livetime_DAQ, per run)
         value['ext_weight'] = 'T.sum_mc_evt.weight'
-        
+
 
 
 manager.append_module("weighter", ka.eventWeighter, dataset_fields = {'ext_weight':'ext_weight'}, kwargs =
@@ -397,7 +397,7 @@ sub_menu = [
         [['nu e CC tot v7.1','+','nu mu CC tot v7.1','+','nu mu NC tot v7.1'], 'nu total v7.1'],  # my old PID selection
         [['muons7X8X v7.1','+','muons9X10X v7.1'], 'muons v7.1'],   # my old PID selection
         [['nu total v7.1','+','muons v7.1',], 'mc total v7.1'],   
- 
+
 
 
 ] # submenu to get all the quantities summed
@@ -407,7 +407,7 @@ for key, module in manager.results.items() :
         # Print the cut handler name and the cut summary
         print('\n\t\t{}\n'.format(module.name))
         module.printCuts()
-        
+
     elif isinstance(module, ka.histogramHandler):
         # Create a TDirectory with the module name
         directory = outfile.mkdir(module.name)
@@ -419,7 +419,7 @@ for key, module in manager.results.items() :
         # Create a TDirectory with the module name
         directory = outfile.mkdir(module.name)
         module.exportToRoot(directory)
-    
+
 
 outfile.Close()
 
@@ -435,31 +435,31 @@ import ROOT
 #outfile = ROOT.TFile('mc_hists_v7.2.root', 'RECREATE')
 outfile = ROOT.TFile('data_hists.root', 'RECREATE')
 
-sub_menu = [                                                                                                                                                                                                       
-#        [['anu e CC low v7.2','+','anu e CC high v7.2','+','anu e CC higher v7.2','+','nu e CC low v7.2','+','nu e CC high v7.2','+','nu e CC higher v7.2'], 'nu e CC tot v7.2'], 
-#        [['anu mu CC low v7.2', '+', 'anu mu CC high v7.2','+','anu mu CC higher v7.2','+', 'nu mu CC low v7.2', '+','nu mu CC high v7.2','+','nu mu CC higher v7.2'], 'nu mu CC tot v7.2'], 
-#        [['anu mu NC low v7.2','+','anu mu NC high v7.2','+','anu mu NC higher v7.2','+','nu mu NC low v7.2','+','nu mu NC high v7.2','+','nu mu NC higher v7.2'], 'nu mu NC tot v7.2'], 
+sub_menu = [
+#        [['anu e CC low v7.2','+','anu e CC high v7.2','+','anu e CC higher v7.2','+','nu e CC low v7.2','+','nu e CC high v7.2','+','nu e CC higher v7.2'], 'nu e CC tot v7.2'],
+#        [['anu mu CC low v7.2', '+', 'anu mu CC high v7.2','+','anu mu CC higher v7.2','+', 'nu mu CC low v7.2', '+','nu mu CC high v7.2','+','nu mu CC higher v7.2'], 'nu mu CC tot v7.2'],
+#        [['anu mu NC low v7.2','+','anu mu NC high v7.2','+','anu mu NC higher v7.2','+','nu mu NC low v7.2','+','nu mu NC high v7.2','+','nu mu NC higher v7.2'], 'nu mu NC tot v7.2'],
 #        [['anu tau CC low v7.2','+','anu tau CC high v7.2','+','nu tau CC low v7.2','+','nu tau CC high v7.2'], 'nu tau CC tot v7.2'],
-#        [['nu e CC tot v7.2','+','nu mu CC tot v7.2','+','nu mu NC tot v7.2', '+', 'nu tau CC tot v7.2'], 'nu tot v7.2'],  
-#        [['nu total v7.2','+','muons v7.2',], 'mc tot v7.2'],   
+#        [['nu e CC tot v7.2','+','nu mu CC tot v7.2','+','nu mu NC tot v7.2', '+', 'nu tau CC tot v7.2'], 'nu tot v7.2'],
+#        [['nu total v7.2','+','muons v7.2',], 'mc tot v7.2'],
 #
-#        [['anu e CC low v7.1','+','anu e CC high v7.1','+','anu e CC higher v7.1','+','nu e CC low v7.1','+','nu e CC high v7.1','+','nu e CC higher v7.1'], 'nu e CC tot v7.1'], 
-#        [['anu mu CC higher v7.1','+','nu mu CC higher v7.1'], 'nu mu CC tot v7.1'], 
-#        [['anu mu NC low v7.1','+','anu mu NC high v7.1','+','anu mu NC higher v7.1','+','nu mu NC low v7.1','+','nu mu NC high v7.1','+','nu mu NC higher v7.1'], 'nu mu NC tot v7.1'], 
+#        [['anu e CC low v7.1','+','anu e CC high v7.1','+','anu e CC higher v7.1','+','nu e CC low v7.1','+','nu e CC high v7.1','+','nu e CC higher v7.1'], 'nu e CC tot v7.1'],
+#        [['anu mu CC higher v7.1','+','nu mu CC higher v7.1'], 'nu mu CC tot v7.1'],
+#        [['anu mu NC low v7.1','+','anu mu NC high v7.1','+','anu mu NC higher v7.1','+','nu mu NC low v7.1','+','nu mu NC high v7.1','+','nu mu NC higher v7.1'], 'nu mu NC tot v7.1'],
 #        [['nu e CC tot v7.1','+','nu mu CC tot v7.1','+','nu mu NC tot v7.1'], 'nu tot v7.1'],  # my old PID selection
 #        [['muons7X8X v7.1','+','muons9X10X v7.1'], 'muons v7.1'],   # my old PID selection
-#        [['nu total v7.1','+','muons v7.1',], 'mc tot v7.1'],   
+#        [['nu total v7.1','+','muons v7.1',], 'mc tot v7.1'],
 #
 #
-#        [['nu e CC tot v7.1','+','nu e CC tot v7.2'], 'nu e CC tot'], 
-#        [['nu mu CC tot v7.2'], 'nu mu CC tot'], 
-#        [['nu mu NC tot v7.1','+','nu mu NC tot v7.2'], 'nu mu NC tot'], 
-#        [['nu tau CC tot v7.2'], 'nu tau CC tot'], 
-#        [['nu e CC tot','+','nu mu CC tot','+','nu mu NC tot', '+', 'nu tau CC tot'], 'nu tot'],  
-#        [['muons v7.1','+','muons v7.2'], 'muons'], 
-#        [['nu tot','+','muons',], 'mc tot'],   
-        
- 
+#        [['nu e CC tot v7.1','+','nu e CC tot v7.2'], 'nu e CC tot'],
+#        [['nu mu CC tot v7.2'], 'nu mu CC tot'],
+#        [['nu mu NC tot v7.1','+','nu mu NC tot v7.2'], 'nu mu NC tot'],
+#        [['nu tau CC tot v7.2'], 'nu tau CC tot'],
+#        [['nu e CC tot','+','nu mu CC tot','+','nu mu NC tot', '+', 'nu tau CC tot'], 'nu tot'],
+#        [['muons v7.1','+','muons v7.2'], 'muons'],
+#        [['nu tot','+','muons',], 'mc tot'],
+
+
         [['data 7X','+','data 80','+','data 85','+','data 90','+','data 95','+','data 100X','+','data 110X'], 'data', 'exposure_weighted'],
 
 
@@ -470,7 +470,7 @@ for key, module in manager_data.results.items() :
         # Print the cut handler name and the cut summary
         print('\n\t\t{}\n'.format(module.name))
         module.printCuts()
-        
+
     elif isinstance(module, ka.histogramHandler):
         # Create a TDirectory with the module name
         directory = outfile.mkdir(module.name)
@@ -482,7 +482,7 @@ for key, module in manager_data.results.items() :
         # Create a TDirectory with the module name
         directory = outfile.mkdir(module.name)
         module.exportToRoot(directory)
-    
+
 
 outfile.Close()
 '''
