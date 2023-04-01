@@ -4,6 +4,8 @@ import tensorflow as tf
 import pandas as pd
 import tune_module
 import numpy as np
+import pandas as pd
+import simpler_tune_module as stm
 
 
 def get_dataset():#fpath: str):
@@ -25,4 +27,7 @@ def get_dataset():#fpath: str):
 
 X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights = get_dataset()
 
-tuner = tune_module.run_hyperparameter_search(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, "tune_test")
+
+#tuner = tune_module.run_hyperparameter_search(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, "tune_test")
+tuner = stm.run_train(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights)#, "tune_test")
+tuner.head()
