@@ -6,6 +6,7 @@ import tune_module
 import numpy as np
 import pandas as pd
 import simpler_tune_module as stm
+import keras_tuner as kt
 
 
 def get_dataset():#fpath: str):
@@ -29,5 +30,6 @@ X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights = g
 
 
 #tuner = tune_module.run_hyperparameter_search(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, "tune_test")
-tuner = stm.run_train(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights)#, "tune_test")
-tuner.head()
+#tuner = stm.run_train(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights)#, "tune_test")
+tuner = kt.HPO(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights)#, "tune_test")
+print(tuner.get_model_summary())
