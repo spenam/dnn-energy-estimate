@@ -1,6 +1,3 @@
-from tensorflow import keras
-import tensorflow as tf
-from tensorflow.keras import layers, Sequential
 import optuna
 import joblib
 import sys
@@ -9,7 +6,7 @@ sys.path.insert(1, '../src/dnn_energy_estimate/training/')
 import build_train as trainer
 
 
-def run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights):
+def run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name):
     fast_config = {
         "n_layers": trial.suggest_int("n_layers",16,32,16),#[4,8,12,16,20,24]),
         "n_nodes": 16,
@@ -38,12 +35,15 @@ def run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weig
         "x_train_weights": x_train_weights,
         "x_val_weights": x_val_weights,
     }
-    train = trainer.TrainNN(fast_config, data)
-    return train.step()
+    #train = trainer.TrainNN(fast_config, data)
+    train = trainer.TrainNN(config, data, study_name)
+    value = train.step()
+    return value
+
 def HPO(x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name="default"):
-    n_trials = 3
+    n_trials = 20
     study = optuna.create_study(direction="minimize")
-    study.optimize(lambda trial: run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights), n_trials=n_trials)
+    study.optimize(lambda trial: run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name), n_trials=n_trials)
     print("Best config: ", study.best_params)
-    joblib.dump(study, study_name+".pkl")
+    joblib.dump(study, study_name + "/" + study_name+".pkl")
     return study

@@ -1,10 +1,11 @@
 from tensorflow import keras
 import tensorflow as tf
 import os
+import json
 from tensorflow.keras import layers, Sequential
 
 class TrainNN():
-    def __init__(self, config, data):
+    def __init__(self, config, data, fpath):
         self.config = config
         self.data = data
         self.x_train = self.data["x_train"]
@@ -13,6 +14,7 @@ class TrainNN():
         self.y_val = self.data["y_val"]
         self.x_train_weights = self.data["x_train_weights"]
         self.x_val_weights = self.data["x_val_weights"]
+        self.fpath = fpath
         self.model = self.build_model()
         
     
@@ -50,20 +52,21 @@ class TrainNN():
             train_dataset,
             validation_data=(self.x_val, self.y_val, self.x_val_weights),
             #sample_weight=self.x_train_weights,
-            epochs=10,
-        #    callbacks=[WandbCallback()],
-#            callbacks = [TuneReportCallback({"mean_accuracy": "accuracy"})],
+            epochs=15,
             verbose=0,
         )
+        self.history = history.history
 
         val_loss = history.history["val_loss"][-1]
         #    self._save({"val_loss": val_loss})
         #return {"val_loss": val_loss}
+        self.save_model()
         return val_loss
     def _config_to_str(self):
         return "-".join([f"{k}_{v}" for k, v in self.config.items()])
-    def save_model(self, fpath):
-        if not os.path.exists(fpath):
-            os.makedirs(fpath)
-        fname = self._config_to_str()+".h5"
-        self.model.save(fpath+fname)
+    def save_model(self):
+        if not os.path.exists(self.fpath):
+            os.makedirs(self.fpath)
+        fname = self._config_to_str()
+        self.model.save(fpath+fname + ".h5")
+        json.dump(self.history, open(fpath+fname + ".json", 'w'))
