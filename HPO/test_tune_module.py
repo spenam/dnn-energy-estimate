@@ -6,13 +6,12 @@ import tune_module
 import numpy as np
 import pandas as pd
 import simpler_tune_module as stm
-import keras_tuner as kt
-import joblib
+import optuna_tuner as ot
 
 
-def get_dataset():#fpath: str):
-    with h5py.File("../../for_train.h5", "r") as f:
-        with h5py.File("../../for_val.h5", "r") as g:
+def get_dataset(fpath: str):
+    with h5py.File(fpath + "/for_train.h5", "r") as f:
+        with h5py.File(fpath + "/for_val.h5", "r") as g:
             print("Opening hdf5...")
             X_train_scaled = tf.convert_to_tensor(pd.DataFrame(f["X"]['JSHOWERFIT_ENERGY',
                                                                           'JENERGY_ENERGY', 'lik_first_JENERGY',
@@ -27,12 +26,9 @@ def get_dataset():#fpath: str):
             print("finished opening hdf5...")
     return X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights
 
-X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights = get_dataset()
+X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights = get_dataset("../../")
 
 
-#tuner = tune_module.run_hyperparameter_search(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, "tune_test")
-#tuner = stm.run_train(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights)#, "tune_test")
 study_name = "tune_test"
-study = kt.HPO(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, study_name = study_name)
-print(study.trials_dataframe().head())
-print(study.get_best_models(num_models=5))
+study = ot.HPO(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, study_name = study_name)
+print(study.trials_dataframe().sort_values(["value"]).head())
