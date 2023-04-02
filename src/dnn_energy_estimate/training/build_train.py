@@ -1,5 +1,6 @@
 from tensorflow import keras
 import tensorflow as tf
+import os
 from tensorflow.keras import layers, Sequential
 
 class TrainNN():
@@ -54,7 +55,15 @@ class TrainNN():
 #            callbacks = [TuneReportCallback({"mean_accuracy": "accuracy"})],
             verbose=0,
         )
+
         val_loss = history.history["val_loss"][-1]
         #    self._save({"val_loss": val_loss})
         #return {"val_loss": val_loss}
         return val_loss
+    def _config_to_str(self):
+        return "-".join([f"{k}_{v}" for k, v in self.config.items()])
+    def save_model(self, fpath):
+        if not os.path.exists(fpath):
+            os.makedirs(fpath)
+        fname = self._config_to_str()+".h5"
+        self.model.save(fpath+fname)
