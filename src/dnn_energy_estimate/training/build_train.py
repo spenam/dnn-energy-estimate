@@ -68,5 +68,5 @@ class TrainNN():
         if not os.path.exists(self.fpath):
             os.makedirs(self.fpath)
         fname = self._config_to_str()
-        self.model.save(fpath+fname + ".h5")
-        json.dump(self.history, open(fpath+fname + ".json", 'w'))
+        self.model.save(self.fpath+ "/" +fname + ".h5")
+        json.dump(self.history, open(self.fpath+"/"+fname + ".json", 'w'))
