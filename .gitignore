@@ -39,3 +39,8 @@ venv
 
 # Vim
 *~
+
+#images and h5
+*.h5
+*.pdf
+*.png
