@@ -24,7 +24,7 @@ def get_dataset_for_pred(fpath: str):
     with h5py.File(fpath, "r") as f:
         print("Opening hdf5...")
         fulldata = f['data']
-        data_scaled = tf.convert_to_tensor(pd.DataFrame(fulldata["X"]['JSHOWERFIT_ENERGY',
+        data_scaled = tf.convert_to_tensor(pd.DataFrame(fulldata['JSHOWERFIT_ENERGY',
                                                                       'JENERGY_ENERGY', 'lik_first_JENERGY',
                                                                       'lik_first_JSHOWERFIT', 'trig_hits', 'trig_doms', 'trig_lines', 'JSTART_LENGTH_METRES', 'dir_x_gandalf', 'dir_y_gandalf', 'dir_z_gandalf','dir_x_showerfit', 'dir_y_showerfit', 'dir_z_showerfit']).to_numpy())
-    return fulldata
+        return f, data_scaled
