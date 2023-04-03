@@ -47,3 +47,8 @@ venv
 
 #pickle files
 *.pkl
+
+# json files
+*.json
+
+
