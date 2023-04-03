@@ -44,6 +44,9 @@ def HPO(x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_na
     n_trials = 30
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name), n_trials=n_trials)
+    with open(study_name + "result.txt","w") as f:
+        print("Best config: ", study.best_params, f)
+        print(study.trials_dataframe().sort_values(["value"]).head(10), f)
     print("Best config: ", study.best_params)
     joblib.dump(study, study_name + "/" + study_name+".pkl")
     return study
