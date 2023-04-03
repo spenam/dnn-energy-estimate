@@ -1,0 +1,8 @@
+Best config:  {'n_layers': 16, 'n_nodes': 48, 'batch_size': 64, 'batchnorm': 0, 'lossf': 'log_cosh', 'activation': 'PReLU', 'drop_vals': 0.44362133513863233, 'learning_rate': 1.1515459850551674e-06}
+    number     value             datetime_start          datetime_complete               duration params_activation  params_batch_size  params_batchnorm  params_drop_vals  params_learning_rate params_lossf  params_n_layers  params_n_nodes     state
+16      16  0.000965 2023-04-03 01:28:14.010973 2023-04-03 01:42:35.656556 0 days 00:14:21.645583             PReLU                 64                 0          0.443621              0.000001     log_cosh               16              48  COMPLETE
+14      14  0.000980 2023-04-03 00:57:40.529551 2023-04-03 01:11:42.356266 0 days 00:14:01.826715             PReLU                 64                 0          0.162795              0.000001     log_cosh               16              16  COMPLETE
+13      13  0.001260 2023-04-03 00:45:10.945129 2023-04-03 00:57:40.529208 0 days 00:12:29.584079             PReLU                 80                 0          0.492958              0.000001     log_cosh               16              32  COMPLETE
+11      11  0.002650 2023-04-03 00:20:12.546854 2023-04-03 00:32:20.708309 0 days 00:12:08.161455             PReLU                 80                 0          0.008921              0.000001     log_cosh               16              16  COMPLETE
+12      12  0.002651 2023-04-03 00:32:20.708698 2023-04-03 00:45:10.944783 0 days 00:12:50.236085             PReLU                 80                 0          0.491652              0.000008     log_cosh               16              32  COMPLETE
+
