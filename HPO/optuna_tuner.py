@@ -41,7 +41,7 @@ def run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weig
     return value
 
 def HPO(x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name="default"):
-    n_trials = 20
+    n_trials = 30
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name), n_trials=n_trials)
     print("Best config: ", study.best_params)
