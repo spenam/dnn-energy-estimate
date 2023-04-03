@@ -7,7 +7,6 @@ def do_hpo(sets):
     general_path = "/sps/km3net/users/spenamar/hackathon/tf/training_workflow/extra_inputs/"
     train_path = general_path + "for_train.h5"
     val_path = general_path + "for_val.h5"
-    study_name
     cwd = os.getcwd()
     batch_job_script =cwd + "/" + "job_HPO.sh"
     time = "12:00:00"
