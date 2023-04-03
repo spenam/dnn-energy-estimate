@@ -27,4 +27,4 @@ def get_dataset_for_pred(fpath: str):
         data_scaled = tf.convert_to_tensor(pd.DataFrame(fulldata['JSHOWERFIT_ENERGY',
                                                                       'JENERGY_ENERGY', 'lik_first_JENERGY',
                                                                       'lik_first_JSHOWERFIT', 'trig_hits', 'trig_doms', 'trig_lines', 'JSTART_LENGTH_METRES', 'dir_x_gandalf', 'dir_y_gandalf', 'dir_z_gandalf','dir_x_showerfit', 'dir_y_showerfit', 'dir_z_showerfit']).to_numpy())
-        return f, data_scaled
+        return data_scaled

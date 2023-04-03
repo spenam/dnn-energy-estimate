@@ -9,16 +9,17 @@ from data_set import get_dataset_for_pred
 
 def make_pred(model_path, data_path, pred_path="./", pred_name = "default"):
     model=keras.models.load_model(model_path)
-    f, data_scaled = get_dataset_for_pred(data_path)
+    data_scaled = get_dataset_for_pred(data_path)
     y_pred = model.predict(data_scaled)
     if not os.path.exists(pred_path + "/pred_y"):
         os.makedirs(pred_path +"/pred_y")
-    with h5py.File(pred_path + "/pred_y" + pred_name + ".h5", "w") as g:
-        g["y"]=np.log10(f["data"]["mc_energy_dst"])
-        g["y_pred"]=y_pred
-        g["JENERGY"]=f["data"]['JENERGY_ENERGY']
-        g["JSHOWERFIT"]=f["data"]['JSHOWERFIT_ENERGY']
-        g["JSTART"]=f["data"]['JSTART_LENGTH_METRES']
-        g["JSHOWERFIT_LENGTH"]=f["data"]['JSHOWERFIT_LENGTH_METRES']
-        g["weights"]=f["data"]["weights"]
-        g["support"]=np.copy(f["support"])
+    with h5py.File(data_path, "r") as f:
+        with h5py.File(pred_path + "/pred_y/" + pred_name + ".h5", "w") as g:
+            g["y"]=np.log10(f["data"]["mc_energy_dst"])
+            g["y_pred"]=y_pred
+            g["JENERGY"]=f["data"]['JENERGY_ENERGY']
+            g["JSHOWERFIT"]=f["data"]['JSHOWERFIT_ENERGY']
+            g["JSTART"]=f["data"]['JSTART_LENGTH_METRES']
+            g["JSHOWERFIT_LENGTH"]=f["data"]['JSHOWERFIT_LENGTH_METRES']
+            g["weights"]=f["data"]["weights"]
+            g["support"]=np.copy(f["support"])
