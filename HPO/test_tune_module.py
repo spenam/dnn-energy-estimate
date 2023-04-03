@@ -7,6 +7,6 @@ from data_set import get_dataset
 
 
 X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights = get_dataset("../../")
-study_name = "search_20230402"
+study_name = "search_20230403"
 study = ot.HPO(X_train_scaled, y_train, X_val_scaled, y_val, X_train_weights, X_val_weights, study_name = study_name)
 print(study.trials_dataframe().sort_values(["value"]).head())
