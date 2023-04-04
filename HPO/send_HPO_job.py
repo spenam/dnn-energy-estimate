@@ -9,7 +9,7 @@ def do_hpo(sets, partition):
     val_path = general_path + "for_val.h5"
     cwd = os.getcwd()
     batch_job_script =cwd + "/" + "job_HPO.sh"
-    time = "24:00:00"
+    time = "12:00:00"
     for i in range(sets):
         study_name = "study_cpu_"+str(i)
         script_options = train_path + " "+ val_path + " " + study_name
