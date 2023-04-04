@@ -21,6 +21,5 @@ def make_pred(model_path, data_path, features, pred_path="./", pred_name = "defa
             g["JENERGY"]=f["data"]['JENERGY_ENERGY']
             g["JSHOWERFIT"]=f["data"]['JSHOWERFIT_ENERGY']
             g["JSTART"]=f["data"]['JSTART_LENGTH_METRES']
-            g["JSHOWERFIT_LENGTH"]=f["data"]['JSHOWERFIT_LENGTH_METRES']
             g["weights"]=f["data"]["weights"]
             g["support"]=np.copy(f["support"])
