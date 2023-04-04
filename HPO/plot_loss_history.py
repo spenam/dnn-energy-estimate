@@ -6,6 +6,7 @@ for p in (glob.glob("fast_test/*.json")):
     path_to_history =p
     with open(path_to_history, 'r') as f:
       data = json.load(f)
+    plt.title(p.split("/")[-1].split(".")[0])
     plt.plot(data["loss"])
     plt.plot(data["val_loss"])
     plt.show()
