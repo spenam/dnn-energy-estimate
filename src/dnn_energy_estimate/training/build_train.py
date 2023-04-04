@@ -67,6 +67,6 @@ class TrainNN():
     def save_model(self, loss):
         if not os.path.exists(self.fpath):
             os.makedirs(self.fpath)
-        fname = self._config_to_str()+"_val-loss_"+str(loss)
+        fname = self._config_to_str()+"_val-loss_"+format(loss, '.7f')
         self.model.save(self.fpath+ "/" +fname+ ".h5")
         json.dump(self.history, open(self.fpath+"/"+fname + ".json", 'w'))
