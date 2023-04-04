@@ -1,11 +1,16 @@
 import optuna
 import joblib
 import sys
+import os
 import matplotlib.pyplot as plt
+import glob
 # caution: path[0] is reserved for script path (or '' in REPL)
-sys.path.insert(1, '../src/dnn_energy_estimate/training/')
-from data_set import get_dataset
-import build_train as trainer
+sys.path.insert(1, '../src/dnn_energy_estimate/')
+from training.data_set import get_dataset
+import training.build_train as trainer
+from postprocessing.test_pred import make_test
+from plotting.plot_corr import do_plots
+
 
 def _config_to_str(dic):
         return "-".join([f"{k}_{v}" for k, v in dic.items()])
@@ -30,17 +35,23 @@ def run_train(trial, train_path, val_path, study_name):
     #    "features" : "fts_1",
     #}
     config = {
-        "n_layers": trial.suggest_int("n_layers",4,32,4),#[4,8,12,16,20,24]),
-        "n_nodes": trial.suggest_int("n_nodes",16,128,16),#[16,32,64,128]),
+        "n_layers": trial.suggest_int("n_layers",16,32,step=16),#[4,8,12,16,20,24]),
+        "n_nodes": trial.suggest_int("n_nodes",32,64,step=32),#[16,32,64,128]),
+        #"n_layers": 12,
+        #"n_nodes": 32,#[16,32,64,128]),
         #"batch_size": trial.suggest_int("batch_size",16,128,16),#[16,32,64,128]),
-        "batch_size": 32,
-        "batchnorm": trial.suggest_int("batchnorm",0,1),#[True, False]),
+        #"batch_size": 32,
+        #"batchnorm": trial.suggest_int("batchnorm",0,1),#[True, False]),
         "lossf": trial.suggest_categorical("lossf",["mean_squared_error", "log_cosh"]),
-        "activation": trial.suggest_categorical("activation",["PReLU", "ReLU"]),
-        #"drop_vals": trial.suggest_float("drop_vals",0,0.5,0.25),#[0., 0.1, 0.2, 0.3, 0.4, 0.5]),
-        "drop_vals": 0.,#[0., 0.1, 0.2, 0.3, 0.4, 0.5]),
-        "learning_rate": trial.suggest_float("learning_rate",1e-6,1e-3,log=True),#[1e-3, 1e-4, 1e-5, 1e-6]),
+        #"activation": trial.suggest_categorical("activation",["PReLU", "ReLU"]),
+        #"activation": "PReLU",
+        #"drop_vals": trial.suggest_float("drop_vals",0,0.1,step=0.1),#[0., 0.1, 0.2, 0.3, 0.4, 0.5]),
+        #"drop_vals": 0.,#[0., 0.1, 0.2, 0.3, 0.4, 0.5]),
+        #"learning_rate": trial.suggest_float("learning_rate",1e-7,1e-5,log=True),#[1e-3, 1e-4, 1e-5, 1e-6]),
+        #"learning_rate": 1e-5,#[1e-3, 1e-4, 1e-5, 1e-6]),
+        "l2": trial.suggest_float("l2", 1e-3,1e-2, log=True),#, step=1e-3),
         "features" : trial.suggest_categorical("features",["fts_1", "fts_2", "fts_3"]),
+        #"features" : "fts_1"
     }
     #config = fast_config
     x_train, x_val, y_train, x_train_weights, y_val, x_val_weights = get_dataset(train_path, val_path, fts[config["features"]])
@@ -58,14 +69,21 @@ def run_train(trial, train_path, val_path, study_name):
     return value
 
 def HPO(train_path, val_path, study_name="default"):
-    n_trials = 20 #100
+    n_trials = 2 #20 #100
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: run_train(trial, train_path, val_path, study_name), n_trials=n_trials)
     orig_stdout = sys.stdout
+    which_feature = study.best_params["features"]
+    abspath = None
     with open(study_name + "/result.txt","w") as f:
         sys.stdout = f
         print("Best config: ", study.best_params)
-        print("Approximated file name: ", _config_to_str(study.best_params))
+        all_tests = glob.glob(study_name + "/*")
+        for item in all_tests:
+             if (item.find(_config_to_str(study.best_params)) != -1) & (item.find(".h5") != -1):
+                  abspath = os.path.abspath(item)
+                  print("path of best item ",abspath)
+                  break
         print(study.trials_dataframe().sort_values(["value"]).head(10))
     sys.stdout.close()
     sys.stdout=orig_stdout 
@@ -81,5 +99,15 @@ def HPO(train_path, val_path, study_name="default"):
     fig = optuna.visualization.plot_contour(study)
     fig.write_image(study_name + "/contour.pdf")
     fig.write_image(study_name + "/contour.png")
+    print("path of best item ",abspath)
+    print("Doing prediction...")
+    study_abspath = os.path.abspath(study_name)
+    pred_path = make_test(abspath, which_feature, study_abspath)
+    print("Done with prediction!!!")
+    print("Doing plotting...")
+    do_plots(pred_path, study_abspath)
+    print("Done with plotting!!!")
+    
+
 
     return study

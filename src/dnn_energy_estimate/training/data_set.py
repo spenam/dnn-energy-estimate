@@ -14,7 +14,10 @@ def get_dataset(fpath_train: str, fpath_val: str, features):
             y_val = np.asarray(g["y"])
             X_val_weights = np.asarray(g["weights"])
             print("finished opening hdf5...")
-    return X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights
+    #return X_train_scaled, X_val_scaled, y_train, X_train_weights, y_val, X_val_weights
+    #TEMPORAL
+    max_samples = 1000#5000000
+    return X_train_scaled[:max_samples], X_val_scaled[:int(max_samples/3)], y_train[:max_samples], X_train_weights[:max_samples], y_val[:int(max_samples/3)], X_val_weights[:int(max_samples/3)]
 
 def get_dataset_for_pred(fpath: str, features):
     with h5py.File(fpath, "r") as f:

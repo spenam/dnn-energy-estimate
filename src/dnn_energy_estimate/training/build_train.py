@@ -1,6 +1,7 @@
 from tensorflow import keras
 import tensorflow as tf
 import os
+from keras.regularizers import l2
 import json
 from tensorflow.keras import layers, Sequential
 
@@ -27,16 +28,18 @@ class TrainNN():
         model.add(layers.BatchNormalization())
 
         for j in range(self.config["n_layers"]):
-            model.add(layers.Dense(self.config["n_nodes"]))
-            if self.config["batchnorm"] is True:
-                model.add(layers.BatchNormalization())
-            model.add(layers.Activation(self.config["activation"]))
-            model.add(layers.Dropout(self.config["drop_vals"]))
+            model.add(layers.Dense(self.config["n_nodes"], kernel_regularizer=l2(self.config["l2"])))
+            #if self.config["batchnorm"] is True:
+            model.add(layers.BatchNormalization())
+            #model.add(layers.Activation(self.config["activation"]))
+            model.add(layers.Activation("PReLU"))
+            #model.add(layers.Dropout(self.config["drop_vals"]))
         model.add(layers.Dense(1))
 
         model.compile(
             optimizer=keras.optimizers.Adam(
-                learning_rate=self.config["learning_rate"]
+                #learning_rate=self.config["learning_rate"]
+                learning_rate=1e-5,
             ),
             loss=self.config["lossf"],
             weighted_metrics=[],
@@ -44,16 +47,17 @@ class TrainNN():
         return model
 
     def _train(self):
-        train_dataset = tf.data.Dataset.from_tensor_slices((self.x_train, self.y_train, self.x_train_weights))
-        train_dataset = train_dataset.shuffle(buffer_size=1024).batch(self.config["batch_size"])
+        #train_dataset = tf.data.Dataset.from_tensor_slices((self.x_train, self.y_train, self.x_train_weights))
+        #train_dataset = train_dataset.shuffle(buffer_size=1024).batch(self.config["batch_size"])
         history = self.model.fit(
-            #self.x_train,
-            #self.y_train,
-            train_dataset,
+            self.x_train,
+            self.y_train,
+            sample_weight=self.x_train_weights,
+            #train_dataset,
             validation_data=(self.x_val, self.y_val, self.x_val_weights),
-            #sample_weight=self.x_train_weights,
-            epochs=15,
+            epochs=25,
             verbose=0,
+            batch_size=64,
         )
         self.history = history.history
 
