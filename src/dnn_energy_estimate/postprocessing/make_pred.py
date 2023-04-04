@@ -7,10 +7,11 @@ import os
 sys.path.insert(1, '../training/')
 from data_set import get_dataset_for_pred
 
-def make_pred(model_path, data_path, pred_path="./", pred_name = "default"):
+def make_pred(model_path, data_path, features, pred_path="./", pred_name = "default"):
     model=keras.models.load_model(model_path)
-    data_scaled = get_dataset_for_pred(data_path)
+    data_scaled = get_dataset_for_pred(data_path, features)
     y_pred = model.predict(data_scaled)
+    del data_scaled
     if not os.path.exists(pred_path + "/pred_y"):
         os.makedirs(pred_path +"/pred_y")
     with h5py.File(data_path, "r") as f:
