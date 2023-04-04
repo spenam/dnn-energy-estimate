@@ -37,7 +37,6 @@ with h5py.File(fname) as data:
     JE = np.copy(10 ** np.asarray(data["JENERGY"]))
     JS = np.copy(10 ** np.asarray(data["JSHOWERFIT"]))
     JElen = np.copy(10 ** np.asarray(data["JSTART"]))*0.25
-    JSlen = np.copy(10 ** np.asarray(data["JSHOWERFIT_LENGTH"]))*0.25
     y_pred = np.copy(10 ** np.asarray(data["y_pred"][:, 0]))
     weights = np.copy(data["weights"])
     support = np.copy(data["support"])
@@ -48,11 +47,11 @@ gfg = get_unbiasing_factor(y, y_pred, histweights=weights)
 xsize = 3*1.5 #6
 ysize = 2*1.5 #4
 
-recos = [y_pred,JE,JElen,JS,JSlen]
+recos = [y_pred,JE,JElen,JS]
 ltrueE = r"True E [GeV]"
-reco_labels = [r"E$_{Est}$ [GeV]", r"E$_{JENERGY}$ [GeV]", r"E$_{JE-Len}$ [GeV]", r"E$_{JSHOWER}$ [GeV]", r"E$_{JS-Len}$ [GeV]"] 
-reco_unbiased_labels = [r"E$_{Est}*s$ [GeV]", r"E$_{JENERGY}$*s [GeV]", r"E$_{JE-Len}$*s [GeV]", r"E$_{JSHOWER}$*s [GeV]", r"E$_{JS-Len}$*s [GeV]"] 
-reco_name = ['Eest', 'JE', 'JE-Len', 'JS', 'JS-Len']
+reco_labels = [r"E$_{Est}$ [GeV]", r"E$_{JENERGY}$ [GeV]", r"E$_{JE-Len}$ [GeV]", r"E$_{JSHOWER}$ [GeV]"] 
+reco_unbiased_labels = [r"E$_{Est}*s$ [GeV]", r"E$_{JENERGY}$*s [GeV]", r"E$_{JE-Len}$*s [GeV]", r"E$_{JSHOWER}$*s [GeV]"] 
+reco_name = ['Eest', 'JE', 'JE-Len', 'JS']
 colors = ['red', 'blue', 'green', 'orange', 'purple']
 
 xnum = 4#len(reco_labels)
