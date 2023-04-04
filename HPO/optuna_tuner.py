@@ -54,34 +54,8 @@ def run_train(trial, train_path, val_path, study_name):
     value = train.step()
     return value
 
-#def HPO(x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name="default"):
-#    n_trials = 2 #100
-#    study = optuna.create_study(direction="minimize")
-#    study.optimize(lambda trial: run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name), n_trials=n_trials)
-#    orig_stdout = sys.stdout
-#    with open(study_name + "/result.txt","w") as f:
-#        sys.stdout = f
-#        print("Best config: ", study.best_params)
-#        print(study.trials_dataframe().sort_values(["value"]).head(10))
-#    sys.stdout.close()
-#    sys.stdout=orig_stdout 
-#    print("Best config: ", study.best_params)
-#    print(study.trials_dataframe().sort_values(["value"]).head(10))
-#    joblib.dump(study, study_name + "/" + study_name+".pkl")
-#    fig = optuna.visualization.plot_optimization_history(study)
-#    fig.write_image(study_name + "/optm_history.pdf")
-#    fig.write_image(study_name + "/optm_history.png")
-#    fig = optuna.visualization.plot_parallel_coordinate(study)
-#    fig.write_image(study_name + "/parallel_coordinate.pdf")
-#    fig.write_image(study_name + "/parallel_coordinate.png")
-#    fig = optuna.visualization.plot_contour(study)
-#    fig.write_image(study_name + "/contour.pdf")
-#    fig.write_image(study_name + "/contour.png")
-#
-#    return study
-
 def HPO(train_path, val_path, study_name="default"):
-    n_trials = 30 #100
+    n_trials = 10 #100
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: run_train(trial, train_path, val_path, study_name), n_trials=n_trials)
     orig_stdout = sys.stdout
