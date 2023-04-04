@@ -7,6 +7,9 @@ sys.path.insert(1, '../src/dnn_energy_estimate/training/')
 from data_set import get_dataset
 import build_train as trainer
 
+def _config_to_str(dic):
+        return "-".join([f"{k}_{v}" for k, v in dic.items()])
+
 
 #def run_train(trial, x_train, y_train, x_val, y_val, x_train_weights, x_val_weights, study_name):
 def run_train(trial, train_path, val_path, study_name):
@@ -55,13 +58,14 @@ def run_train(trial, train_path, val_path, study_name):
     return value
 
 def HPO(train_path, val_path, study_name="default"):
-    n_trials = 10 #100
+    n_trials = 20 #100
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: run_train(trial, train_path, val_path, study_name), n_trials=n_trials)
     orig_stdout = sys.stdout
     with open(study_name + "/result.txt","w") as f:
         sys.stdout = f
         print("Best config: ", study.best_params)
+        print("Approximated file name: ", _config_to_str(study.best_params))
         print(study.trials_dataframe().sort_values(["value"]).head(10))
     sys.stdout.close()
     sys.stdout=orig_stdout 
