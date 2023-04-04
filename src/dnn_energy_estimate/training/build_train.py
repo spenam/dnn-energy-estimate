@@ -60,13 +60,13 @@ class TrainNN():
         val_loss = history.history["val_loss"][-1]
         #    self._save({"val_loss": val_loss})
         #return {"val_loss": val_loss}
-        self.save_model()
+        self.save_model(val_loss)
         return val_loss
     def _config_to_str(self):
         return "-".join([f"{k}_{v}" for k, v in self.config.items()])
-    def save_model(self):
+    def save_model(self, loss):
         if not os.path.exists(self.fpath):
             os.makedirs(self.fpath)
-        fname = self._config_to_str()
-        self.model.save(self.fpath+ "/" +fname + ".h5")
+        fname = self._config_to_str()+"_val-loss_"+str(loss)
+        self.model.save(self.fpath+ "/" +fname+ ".h5")
         json.dump(self.history, open(self.fpath+"/"+fname + ".json", 'w'))
